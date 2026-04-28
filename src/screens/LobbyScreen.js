@@ -9,11 +9,13 @@ import {
   Alert,
   Modal,
   FlatList,
-  RefreshControl
+  RefreshControl,
+  Image
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { Colors, Spacing, FontSizes, BorderRadius } from '../constants/theme';
 import { subscribeToSession } from '../services/sessionService';
+import QRCode from 'react-native-qrcode-svg';
 
 export const LobbyScreen = ({ route, navigation }) => {
   const { session } = route.params;
@@ -160,6 +162,21 @@ export const LobbyScreen = ({ route, navigation }) => {
             <View style={styles.modalCodeBox}>
               <Text style={styles.modalCodeText}>{session.joinCode}</Text>
             </View>
+            
+            {/* QR Code Display */}
+            <View style={styles.qrSection}>
+              <Text style={styles.qrLabel}>Scan to join</Text>
+              <View style={styles.qrContainer}>
+                <QRCode
+                  value={`https://zsplit.app/join/${session.joinCode}`}
+                  size={200}
+                  backgroundColor={Colors.surface}
+                  color={Colors.primary}
+                />
+              </View>
+              <Text style={styles.qrHint}>Or scan this QR code</Text>
+            </View>
+            
             <View style={styles.modalActions}>
               <TouchableOpacity style={styles.modalBtn} onPress={handleCopyCode}>
                 <Ionicons name="copy-outline" size={24} color={Colors.surface} />
@@ -212,13 +229,17 @@ const styles = StyleSheet.create({
   startButton: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, backgroundColor: Colors.success, paddingVertical: Spacing.lg },
   startButtonText: { fontSize: FontSizes.h3, fontWeight: '600', color: Colors.surface },
   modalOverlay: { flex: 1, backgroundColor: 'rgba(0,0,0,0.8)', justifyContent: 'center', alignItems: 'center', padding: Spacing.lg },
-  modalContent: { backgroundColor: Colors.surface, padding: Spacing.xl, alignItems: 'center', width: '100%', maxWidth: 360 },
+  qrSection: { alignItems: 'center', marginVertical: Spacing.lg },
+  qrLabel: { fontSize: FontSizes.sm, color: Colors.textSecondary, marginBottom: Spacing.sm },
+  qrContainer: { padding: Spacing.md, backgroundColor: Colors.surface, borderRadius: BorderRadius.lg },
+  qrHint: { fontSize: FontSizes.sm, color: Colors.textSecondary, marginTop: Spacing.sm },
+  modalContent: { backgroundColor: Colors.background, padding: Spacing.xl, alignItems: 'center', width: '100%', maxWidth: 360 },
   modalTitle: { fontSize: FontSizes.h2, fontWeight: '700', color: Colors.textPrimary, marginBottom: Spacing.lg },
-  modalCodeBox: { backgroundColor: Colors.background, paddingHorizontal: 40, paddingVertical: 24, marginBottom: Spacing.lg },
+  modalCodeBox: { backgroundColor: Colors.surface, paddingHorizontal: 40, paddingVertical: 24, marginBottom: Spacing.md },
   modalCodeText: { fontSize: 48, fontWeight: '700', color: Colors.primary, letterSpacing: 8 },
   modalActions: { flexDirection: 'row', gap: Spacing.md, marginBottom: Spacing.md },
   modalBtn: { flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, backgroundColor: Colors.primary, paddingVertical: Spacing.md },
-  modalBtnSecondary: { backgroundColor: Colors.background },
+  modalBtnSecondary: { backgroundColor: Colors.surface },
   modalBtnText: { fontSize: FontSizes.body, fontWeight: '600', color: Colors.surface },
   modalHint: { fontSize: FontSizes.sm, color: Colors.textSecondary, textAlign: 'center' }
 });
