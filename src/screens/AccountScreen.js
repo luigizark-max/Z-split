@@ -215,20 +215,39 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     padding: Spacing.md,
-    paddingHorizontal: Spacing.lg
+    paddingHorizontal: Spacing.lg,
+    flexWrap: 'wrap',
+    minHeight: 56
   },
   infoLeft: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: Spacing.sm
+    gap: Spacing.sm,
+    flexShrink: 0
   },
   infoLabel: {
     fontSize: FontSizes.body,
     color: Colors.textPrimary
   },
+  infoRight: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    flexWrap: 'wrap',
+    flexShrink: 0
+  },
+  editBtn: {
+    padding: 8,
+    minWidth: 44,
+    minHeight: 44,
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexShrink: 0
+  },
   infoValue: {
     fontSize: FontSizes.body,
-    color: Colors.textSecondary
+    color: Colors.textSecondary,
+    flexShrink: 1
   },
   divider: {
     height: 1,
