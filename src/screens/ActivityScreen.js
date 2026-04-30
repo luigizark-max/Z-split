@@ -12,46 +12,13 @@ import { Ionicons } from '@expo/vector-icons';
 import { Colors, Spacing, FontSizes, BorderRadius } from '../constants/theme';
 import { getCurrentUser } from '../services/auth';
 
-// Demo data for past bills
-const DEMO_BILLS = [
-  {
-    id: '1',
-    name: 'Dinner at Olive Garden',
-    date: '2026-04-25',
-    total: 87.50,
-    status: 'settled',
-    participants: 4
-  },
-  {
-    id: '2',
-    name: 'Weekend Trip - Airbnb',
-    date: '2026-04-20',
-    total: 240.00,
-    status: 'pending',
-    participants: 6
-  },
-  {
-    id: '3',
-    name: 'Birthday Party - Drinks',
-    date: '2026-04-15',
-    total: 156.00,
-    status: 'settled',
-    participants: 8
-  },
-  {
-    id: '4',
-    name: 'Office Lunch',
-    date: '2026-04-10',
-    total: 45.00,
-    status: 'settled',
-    participants: 3
-  }
-];
+// Real bills are loaded from your session/billing service
+// No demo data - bills appear only after users create/pay sessions
 
 export const ActivityScreen = ({ navigation }) => {
   const user = getCurrentUser();
   const [refreshing, setRefreshing] = useState(false);
-  const [bills, setBills] = useState(DEMO_BILLS);
+  const [bills, setBills] = useState([]);
 
   const onRefresh = useCallback(() => {
     setRefreshing(true);
