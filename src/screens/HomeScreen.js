@@ -69,17 +69,6 @@ export const HomeScreen = ({ navigation }) => {
           </View>
         </TouchableOpacity>
 
-        {/* My Bills */}
-        <TouchableOpacity
-          style={styles.actionCard}
-          onPress={() => Alert.alert('Coming Soon', 'Your bill history will appear here')}
-          activeOpacity={0.8}
-        >
-          <View style={styles.cardContent}>
-            <Text style={styles.cardTitle}>My Bills</Text>
-            <Text style={styles.cardSubtitle}>View your past bills</Text>
-          </View>
-        </TouchableOpacity>
       </ScrollView>
 
       {/* Footer */}

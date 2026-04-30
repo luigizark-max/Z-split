@@ -67,7 +67,15 @@ export const AccountScreen = ({ navigation }) => {
                 <Ionicons name="person-outline" size={20} color={Colors.primary} />
                 <Text style={styles.infoLabel}>Full Name</Text>
               </View>
-              <Text style={styles.infoValue}>{user?.name || 'Not set'}</Text>
+              <View style={styles.infoRight}>
+                <Text style={styles.infoValue}>{user?.name || 'Not set'}</Text>
+                <TouchableOpacity
+                  style={styles.editBtn}
+                  onPress={() => navigation.navigate('EditProfile')}
+                >
+                  <Ionicons name="create-outline" size={20} color={Colors.primary} />
+                </TouchableOpacity>
+              </View>
             </View>
 
             <View style={styles.divider} />
@@ -77,17 +85,34 @@ export const AccountScreen = ({ navigation }) => {
                 <Ionicons name="call-outline" size={20} color={Colors.primary} />
                 <Text style={styles.infoLabel}>Phone</Text>
               </View>
-              <Text style={styles.infoValue}>{user?.phone || 'Not set'}</Text>
+              <View style={styles.infoRight}>
+                <Text style={styles.infoValue}>{user?.phone || 'Not set'}</Text>
+                <TouchableOpacity
+                  style={styles.editBtn}
+                  onPress={() => navigation.navigate('EditProfile')}
+                >
+                  <Ionicons name="create-outline" size={20} color={Colors.primary} />
+                </TouchableOpacity>
+              </View>
             </View>
 
             <View style={styles.divider} />
+
 
             <View style={styles.infoRow}>
               <View style={styles.infoLeft}>
                 <Ionicons name="mail-outline" size={20} color={Colors.primary} />
                 <Text style={styles.infoLabel}>Email</Text>
               </View>
-              <Text style={styles.infoValue}>{user?.email || 'Not added'}</Text>
+              <View style={styles.infoRight}>
+                <Text style={styles.infoValue}>{user?.email || 'Not added'}</Text>
+                <TouchableOpacity
+                  style={styles.editBtn}
+                  onPress={() => navigation.navigate('EditProfile')}
+                >
+                  <Ionicons name="create-outline" size={20} color={Colors.primary} />
+                </TouchableOpacity>
+              </View>
             </View>
           </View>
         </View>
@@ -228,6 +253,21 @@ const styles = StyleSheet.create({
   infoLabel: {
     fontSize: FontSizes.body,
     color: Colors.textPrimary
+  },
+  infoRight: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    flexWrap: 'wrap',
+    flexShrink: 0
+  },
+  editBtn: {
+    padding: 8,
+    minWidth: 44,
+    minHeight: 44,
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexShrink: 0
   },
   infoRight: {
     flexDirection: 'row',
