@@ -122,7 +122,10 @@ export const AccountScreen = ({ navigation }) => {
           <Text style={styles.sectionTitle}>App</Text>
 
           <View style={styles.infoCard}>
-            <TouchableOpacity style={styles.infoRow}>
+            <TouchableOpacity
+              style={styles.infoRow}
+              onPress={() => navigation.navigate('Info', { type: 'terms' })}
+            >
               <View style={styles.infoLeft}>
                 <Ionicons name="document-text-outline" size={20} color={Colors.primary} />
                 <Text style={styles.infoLabel}>Terms of Service</Text>
@@ -132,7 +135,10 @@ export const AccountScreen = ({ navigation }) => {
 
             <View style={styles.divider} />
 
-            <TouchableOpacity style={styles.infoRow}>
+            <TouchableOpacity
+              style={styles.infoRow}
+              onPress={() => navigation.navigate('Info', { type: 'privacy' })}
+            >
               <View style={styles.infoLeft}>
                 <Ionicons name="shield-checkmark-outline" size={20} color={Colors.primary} />
                 <Text style={styles.infoLabel}>Privacy Policy</Text>
@@ -142,7 +148,10 @@ export const AccountScreen = ({ navigation }) => {
 
             <View style={styles.divider} />
 
-            <TouchableOpacity style={styles.infoRow}>
+            <TouchableOpacity
+              style={styles.infoRow}
+              onPress={() => navigation.navigate('Info', { type: 'about' })}
+            >
               <View style={styles.infoLeft}>
                 <Ionicons name="information-circle-outline" size={20} color={Colors.primary} />
                 <Text style={styles.infoLabel}>About Z-split</Text>

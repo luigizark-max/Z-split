@@ -19,7 +19,7 @@ import { LobbyScreen } from './src/screens/LobbyScreen';
 import { JoinSessionScreen } from './src/screens/JoinSessionScreen';
 import { SharedBillScreen } from './src/screens/SharedBillScreen';
 import { SummaryScreen } from './src/screens/SummaryScreen';
-import { PaymentSettlementScreen } from './src/screens/PaymentSettlementScreen';
+import { InfoScreen } from './src/screens/InfoScreen';
 import { loadCurrentUser, getCurrentUser } from './src/services/auth';
 
 const Stack = createStackNavigator();
@@ -145,6 +145,7 @@ function App() {
             <Stack.Screen name="JoinSession" component={JoinSessionScreen} />
             <Stack.Screen name="SharedBill" component={SharedBillScreen} />
             <Stack.Screen name="Summary" component={SummaryScreen} />
+            <Stack.Screen name="Info" component={InfoScreen} />
             <Stack.Screen name="PaymentSettlement" component={PaymentSettlementScreen} />
           </>
         )}
