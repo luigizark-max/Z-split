@@ -7,10 +7,8 @@ redirects = []
 [functions."*"]
 
 [build]
-publish = "/Users/eakde1/Z-split/dist"
-publishOrigin = "ui"
-commandOrigin = "ui"
-command = "expo export -p web"
+publish = "dist"
+command = "npx expo export --platform web"
 
 [build.environment]
 
