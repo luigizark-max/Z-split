@@ -5,8 +5,7 @@ import {
   TouchableOpacity,
   ScrollView,
   StyleSheet,
-  Linking,
-  Platform
+  Linking
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { Colors, Spacing, FontSizes, BorderRadius } from '../constants/theme';
@@ -98,7 +97,8 @@ Built with React Native and Expo.
 Support: support@zsplit.app`;
 
 export const InfoScreen = ({ route, navigation }) => {
-  const { type } = route.params;
+  const params = route.params || {};
+  const { type } = params;
 
   const getContent = () => {
     switch (type) {
@@ -109,7 +109,7 @@ export const InfoScreen = ({ route, navigation }) => {
       case 'about':
         return { title: 'About Z-split', content: ABOUT_ZSPLIT, icon: 'information-circle-outline' };
       default:
-        return { title: 'Info', content: '', icon: 'information-circle-outline' };
+        return { title: 'Info', content: 'No content available.', icon: 'information-circle-outline' };
     }
   };
 
@@ -138,7 +138,7 @@ export const InfoScreen = ({ route, navigation }) => {
 
         <Text style={styles.contentText}>{content}</Text>
 
-        {type !== 'about' && (
+        {type && type !== 'about' && (
           <TouchableOpacity style={styles.contactBtn} onPress={handleContact}>
             <Ionicons name="mail-outline" size={20} color={Colors.surface} />
             <Text style={styles.contactBtnText}>Contact Support</Text>
