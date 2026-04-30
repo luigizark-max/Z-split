@@ -8,6 +8,8 @@ import { Ionicons } from '@expo/vector-icons';
 
 import { Colors } from './src/constants/theme';
 import { AuthScreen } from './src/screens/AuthScreen';
+import { FaceEnrollmentScreen } from './src/screens/FaceEnrollmentScreen';
+import { FaceLoginScreen } from './src/screens/FaceLoginScreen';
 import { HomeScreen } from './src/screens/HomeScreen';
 import { ActivityScreen } from './src/screens/ActivityScreen';
 import { AccountScreen } from './src/screens/AccountScreen';
@@ -129,7 +131,11 @@ function App() {
       <StatusBar style="light" />
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         {!user ? (
-          <Stack.Screen name="Auth" component={AuthScreen} />
+          <>
+            <Stack.Screen name="Auth" component={AuthScreen} />
+            <Stack.Screen name="FaceEnrollment" component={FaceEnrollmentScreen} />
+            <Stack.Screen name="FaceLogin" component={FaceLoginScreen} />
+          </>
         ) : (
           <>
             <Stack.Screen name="Main" component={TabNavigator} />

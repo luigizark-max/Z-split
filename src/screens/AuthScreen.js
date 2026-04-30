@@ -14,7 +14,7 @@ import {
 import { Ionicons } from '@expo/vector-icons';
 import { Colors, Spacing, FontSizes } from '../constants/theme';
 import { countryCodes, defaultCountryCode } from '../constants/countryCodes';
-import { createAccount, signIn } from '../services/auth';
+import { createAccount, signIn, hasFaceEnrolled } from '../services/auth';
 
 const validateName = (name) => {
   const trimmed = name.trim();
@@ -61,8 +61,22 @@ export const AuthScreen = () => {
     try {
       if (isLogin) {
         await signIn({ phone: fullPhone() });
+        // After login: check if face is enrolled
+        const phoneDigits = fullPhone().replace(/\D/g, '');
+        if (hasFaceEnrolled(phoneDigits)) {
+          // Has face enrolled → go to FaceLoginScreen for 2FA
+          navigation.navigate('FaceLogin');
+        } else {
+          // No face enrolled → go directly to app
+          navigation.reset({
+            index: 0,
+            routes: [{ name: 'Main' }],
+          });
+        }
       } else {
         await createAccount({ name, phone: fullPhone(), email });
+        // After signup: offer to enroll face for 2FA
+        navigation.navigate('FaceEnrollment');
       }
     } catch (err) {
       setGeneralError(err.message);

@@ -73,6 +73,17 @@ export const signIn = async ({ phone }) => {
   return user;
 };
 
+export const hasFaceEnrolled = (phone) => {
+  if (typeof window === 'undefined') return false;
+  const faceData = localStorage.getItem(`@Zsplit:faceToken:${phone}`);
+  return !!faceData;
+};
+
+export const setFaceEnrolled = (phone, faceToken) => {
+  if (typeof window === 'undefined') return;
+  localStorage.setItem(`@Zsplit:faceToken:${phone}`, JSON.stringify(faceToken));
+};
+
 export const updateProfile = async (updates) => {
   await new Promise(resolve => setTimeout(resolve, 300));
   const currentUser = getCurrentUser();
